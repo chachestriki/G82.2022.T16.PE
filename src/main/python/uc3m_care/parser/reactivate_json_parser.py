@@ -12,7 +12,7 @@ class ReactivateJsonParser(JsonParser):
     BAD_DATE_SIGNATURE_LABEL_ERROR = "JSON Decode Error - Wrong type"
     BAD_NEW_DATE_LABEL_ERROR = "JSON Decode Error - Wrong type"
 
-    _JSON_KEYS = [ DATE_SIGNATURE_KEY,
+    _JSON_KEYS = [DATE_SIGNATURE_KEY,
                    REACTIVATION_KEY,
                    NEW_DATE_KEY]
     _ERROR_MESSAGES = [ BAD_DATE_SIGNATURE_LABEL_ERROR,

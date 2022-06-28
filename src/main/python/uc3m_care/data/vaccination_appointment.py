@@ -159,6 +159,7 @@ class VaccinationAppointment():
                     raise VaccineManagementException("The appointment cannot be retrieved today")
             else:
                 if today < newdate:
+                    #newdate = datetime.fromtimestamp(newdate)
                     self.__appointment_date = newdate
                     self.__cancelled = "active"
                     self.__reason_to_cancel = ""
@@ -214,6 +215,7 @@ class VaccinationAppointment():
     @staticmethod
     def reactivate_appointment_from_json_file(json_file):
         """Check is appointment is cancelled and reactivates"""
+
         reactivation_key = ReactivateJsonParser(json_file).json_content
         appointment = VaccinationAppointment. \
             get_appointment_from_date_signature(reactivation_key[ReactivateJsonParser.DATE_SIGNATURE_KEY])
