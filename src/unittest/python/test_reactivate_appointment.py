@@ -101,14 +101,13 @@ class TestCancelAppointment(TestCase):
 
     @freeze_time("2022-03-17")
     def test_reactivate_newdate_ok(self):
-        """Caso valido 2, no corregido, no entiendo el fallo, lee mal el json"""
+        """Caso valido 2, no corregido, no entiendo el fallo, lee mal el json cuando tiene bien el formato"""
         my_file_re = JSON_FILES_RF3_PATH + "Valid_Case_2.json"
         my_file_cancel = JSON_FILES_PATH + "cancel_files/" + "cancel_temporal.json"
 
         my_manager = VaccineManager()
         # primero cancelamos
         my_manager.cancel_appointment(my_file_cancel)
-        print("0999")
         # reactivamos despues
         result = my_manager.reactivate_appointment(my_file_re)
 
@@ -149,12 +148,12 @@ class TestCancelAppointment(TestCase):
     @freeze_time("2022-03-17")
     def test_reactivate_final_no_ok(self):
         """Caso no valido reactivar cita con cancelacion final, correcto"""
-        my_file_re = JSON_FILES_RF3_PATH + "casovalido2.json"
-        #my_file_cancel = JSON_FILES_PATH + "cancel_files/" + "cancel_temporal.json"
+        my_file_re = JSON_FILES_RF3_PATH + "citapasada.json"
+        my_file_cancel = JSON_FILES_PATH + "cancel_files/" + "cancel_temporal.json"
 
         my_manager = VaccineManager()
         # primero cancelamos
-        #my_manager.cancel_appointment(my_file_cancel)
+        my_manager.cancel_appointment(my_file_cancel)
         # reactivamos despues
         with self.assertRaises(VaccineManagementException) as c_m:
             result = my_manager.reactivate_appointment(my_file_re)
