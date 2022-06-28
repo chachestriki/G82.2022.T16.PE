@@ -95,8 +95,6 @@ class TestCancelAppointment(TestCase):
             "5a06c7bede3d584e934e2f5bd3861e625cb31937f9f1a5362a51fbbf38486f1c")
         self.assertEqual(reactivate_key["_VaccinationAppointment__cancelled"], "active")
 
-    #cambiar jsons
-    #cita new date
     #cita newdate no valida
 
     @freeze_time("2022-03-17")
@@ -146,8 +144,8 @@ class TestCancelAppointment(TestCase):
         self.assertEqual(c_m.exception.message, "Vaccine not temporally cancelled")
 
     @freeze_time("2022-03-17")
-    def test_reactivate_final_no_ok(self):
-        """Caso no valido reactivar cita con cancelacion final, correcto"""
+    def test_reactivate_citapasada(self):
+        """Caso no valido reactivar cita pasada, no correcto, no encuentra el archivo"""
         my_file_re = JSON_FILES_RF3_PATH + "citapasada.json"
         my_file_cancel = JSON_FILES_PATH + "cancel_files/" + "cancel_temporal.json"
 
