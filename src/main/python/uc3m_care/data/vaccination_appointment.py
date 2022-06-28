@@ -148,7 +148,6 @@ class VaccinationAppointment():
         #cambiamos formato a timestamph
         newdate = datetime.fromisoformat(newdate).date()
         if self.__cancelled != "Final":
-            today = datetime.today().date()
             if reactivation_type == "Normal":
                 date_patient = datetime.fromtimestamp(self.__appointment_date).date()
                 if today < date_patient:
@@ -215,7 +214,6 @@ class VaccinationAppointment():
     @staticmethod
     def reactivate_appointment_from_json_file(json_file):
         """Check is appointment is cancelled and reactivates"""
-
         reactivation_key = ReactivateJsonParser(json_file).json_content
         appointment = VaccinationAppointment. \
             get_appointment_from_date_signature(reactivation_key[ReactivateJsonParser.DATE_SIGNATURE_KEY])
