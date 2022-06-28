@@ -48,6 +48,7 @@ class VaccineManager:
         def reactivate_appointment(self, input_file):
             """Reactivate the cancelled dates and can change its date"""
             appointment = VaccinationAppointment.reactivate_appointment_from_json_file(input_file)
+            return appointment.date_signature
 
     instance = None
 

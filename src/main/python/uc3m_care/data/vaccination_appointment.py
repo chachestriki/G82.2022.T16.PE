@@ -153,6 +153,7 @@ class VaccinationAppointment():
                 date_patient = datetime.fromtimestamp(self.__appointment_date).date()
                 if today < date_patient:
                     self.__cancelled = "active"
+                    self.__reason_to_cancel = ""
                     self.update_appointment()
                 else:
                     raise VaccineManagementException("The appointment cannot be retrieved today")
@@ -160,6 +161,7 @@ class VaccinationAppointment():
                 if today < newdate:
                     self.__appointment_date = newdate
                     self.__cancelled = "active"
+                    self.__reason_to_cancel = ""
                     self.update_appointment()
         else:
             raise VaccineManagementException("Vaccine not temporally cancelled")

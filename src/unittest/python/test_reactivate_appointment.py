@@ -46,4 +46,8 @@ class TestCancelAppointment(TestCase):
         #reactivamos despues
         result = my_manager.reactivate_appointment(my_file_re)
         self.assertEqual("5a06c7bede3d584e934e2f5bd3861e625cb31937f9f1a5362a51fbbf38486f1c", result)
+        keys_store = AppointmentsJsonStore()
+        reactivate_key = keys_store.find_item(
+            "5a06c7bede3d584e934e2f5bd3861e625cb31937f9f1a5362a51fbbf38486f1c")
+        self.assertEqual(reactivate_key["_VaccinationAppointment__cancelled"], "active")
 
